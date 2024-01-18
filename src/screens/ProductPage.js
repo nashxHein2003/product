@@ -1,4 +1,4 @@
-import { View, Text, Modal, StyleSheet, Pressable } from 'react-native'
+import { View } from 'react-native'
 import React, {useState} from 'react'
 import CartButton from './../components/CartButton';
 import PickerCategory from './../components/PickerCategory';
@@ -14,6 +14,7 @@ const ProductPage = ({data, selectedCategory, setSelectedCategory, sections}) =>
   }
   return (
     <View>
+      
       <CartButton cartItemCount={cartItemCount} selectedProduct={selectedCategory} cartItems={cartItems} setCartItems={setCartItems} />
       <PickerCategory data={data} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
       <ProductSection sections={sections} addToCart={addToCart} cartItemCount={cartItemCount} /> 

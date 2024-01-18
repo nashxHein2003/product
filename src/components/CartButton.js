@@ -14,6 +14,7 @@ const CartButton = ({cartItemCount,selectedProduct, cartItems,setCartItems}) => 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   }
+  
   return (
     <View style={styles.cartBtn}>
       <TouchableOpacity style={styles.button} onPress={toggleModal}>
@@ -24,10 +25,17 @@ const CartButton = ({cartItemCount,selectedProduct, cartItems,setCartItems}) => 
           <View style={styles.badge}>
             <Text style={styles.badgeText}>{cartItemCount}</Text>
           </View>
-        )}
-        
+        )} 
       </TouchableOpacity>
-      <ModalCart isVisible={isModalVisible} onClose={toggleModal} selectedProduct={selectedProduct} cartItemCount={cartItemCount} cartItems={cartItems} updateCart={updateCart} />
+      
+      <ModalCart 
+        isVisible={isModalVisible} 
+        onClose={toggleModal} 
+        selectedProduct={selectedProduct} 
+        cartItemCount={cartItemCount} 
+        cartItems={cartItems} 
+        updateCart={updateCart} />
+
       </View>
   )
 }

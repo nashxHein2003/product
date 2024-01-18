@@ -1,18 +1,33 @@
-import { SafeAreaView, View, Text, Modal, StyleSheet, TouchableOpacity, FlatList, Image } from 'react-native'
-import React, {useState} from 'react'
-import  { Feather } from '@expo/vector-icons'
+import { 
+  SafeAreaView, 
+  View, 
+  Text, 
+  Modal, 
+  StyleSheet, 
+  TouchableOpacity, 
+  FlatList, 
+  Image } from 'react-native'
+import React from 'react'
+import ModalFooter from './ModalFooter';
 
-const ModalCart = ({ isVisible, onClose, cartItems, updateCart }) => {
+
+const ModalCart = ({ 
+  isVisible, 
+  onClose, 
+  cartItems, 
+  updateCart }) => {
 
   const handleRemoveFromCart = (itemId) => {
     const updatedCart = cartItems.filter(item => item.id !== itemId);
-    updateCart(updatedCart);
-  };
-  const getTotalAmount = () => {
-    return cartItems.reduce((total, item) => total + item.price, 0);
-  };
+      updateCart(updatedCart);
+    };
+    const getTotalAmount = () => {
+      return cartItems.reduce((total, item) => total + item.price, 0);
+    };
+
   return (
-    <Modal transparent={true} visible={isVisible} animationType="slide">
+    <View>
+      <Modal transparent={true} visible={isVisible} animationType="slide">
       <SafeAreaView style={styles.modalContainer}>
           
           <FlatList
@@ -38,23 +53,12 @@ const ModalCart = ({ isVisible, onClose, cartItems, updateCart }) => {
               </View>
             )}
           />
-          <View style={styles.footer}>
-            <View style={styles.totalView}>
-              <Text style={styles.totalTxt}>Total Amount: $ {getTotalAmount()}</Text>
-            </View>
+          <ModalFooter getTotalAmount={getTotalAmount} onClose={onClose}  purchased />
 
-            <View style={styles.footerBtnS}>
-              <TouchableOpacity onPress={onClose} style={styles.closeBtn}>
-                <Text style={{fontSize: 14, fontWeight: 'bold', color: 'white'}}>
-                  Back
-                </Text>
-              </TouchableOpacity>
-            </View>
-          
-          
-          </View>
       </SafeAreaView>
+
     </Modal>
+    </View>
   );
 }
 
@@ -90,6 +94,7 @@ const styles = StyleSheet.create({
   productPrice: {
     fontSize: 16,
     marginBottom: 5,
+    fontWeight: 'bold'
   },
   productDescription: {
     fontSize: 14,
@@ -138,42 +143,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 11
   },
-  footer: {
-    width: '100%',
-    height: 150,
-    position: 'absolute',
-    bottom: 0,
-    backgroundColor: 'white',
-    zIndex: 100,
-    boxShadowColor: '#000',
-    shadowOffset: { width: 0, height: -2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-  },
-  totalView: {
-    width: '100%',
-    paddingVertical: 20,
-    borderBottomColor: 'grey',
-    borderBottomWidth: 0.5
-  },
-  footerBtnS: {
-    width: '100%',
-    paddingVertical: 10,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    justifyContent: 'flex-end'
-  },
-  closeBtn: {
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 10,
-    backgroundColor: '#3498db',
-    marginRight: 20
-  },
-  totalTxt: {
-    fontWeight: 'bold',
-    fontSize: 16,
-    marginLeft: 20, 
-  }
 
 });

@@ -1,26 +1,43 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  View, 
-  SectionList, 
+import {  
   Text, 
-  Image, 
-  FlatList, 
   StyleSheet, 
   SafeAreaView,
-  TouchableOpacity} from 'react-native';
+  View,
+  ActivityIndicator
+  } from 'react-native';
 
 import { useProductData } from './src/hooks/useProductData';
 import ProductPage from './src/screens/ProductPage';
-import { NavigationContainer } from '@react-navigation/native';
-import Tabs from './src/components/Tabs';
+import LoginScreen from './src/screens/LoginScreen';
+
 
 
 const App = () => {
   const { data }= useProductData();
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [state, setState] = useState({
+    isLoggedIn: false
+  })
+
+
+  const handleLogin = () => {
+    setState({ isLoggedIn: true });
+  };
+
+  if (!state.isLoggedIn) {
+    return <LoginScreen handleLogin={handleLogin} />;
+  }
 
   if (!data) {
-    return <Text>Loading...</Text>;
+    return (
+      <View style={styles.container}>
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color="#3498db" />
+          <Text style={styles.loadingText}>Loading...</Text>
+        </View>
+    </View>
+    );
   }
 
   const filteredProducts = selectedCategory === 'All'
@@ -48,5 +65,23 @@ export default App;
 
 
 const styles = StyleSheet.create({
-  
-})
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loadingContainer: {
+    alignItems: 'center',
+  },
+  loadingText: {
+    marginTop: 10,
+    color: '#3498db',
+  },
+  loadedContainer: {
+    alignItems: 'center',
+  },
+  loadedText: {
+    fontSize: 20,
+    color: '#3498db',
+  },
+});
