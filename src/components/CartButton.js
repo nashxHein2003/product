@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   badge: {
-    backgroundColor: '#fcba03', // Customize badge background color
+    backgroundColor: '#fcba03',
     borderRadius: 60,
     paddingHorizontal: 5,
     paddingVertical: 2,
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   badgeText: {
-    color: 'white', // Customize badge text color
+    color: 'white',
     fontWeight: 'bold',
     fontSize: 12,
   },

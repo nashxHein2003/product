@@ -31,7 +31,7 @@ const ModalCart = ({
       <SafeAreaView style={styles.modalContainer}>
           
           <FlatList
-            data={cartItems} // Assuming cartItems is an array of items
+            data={cartItems} 
             keyExtractor={(item) => item.id.toString()}
             renderItem={({ item }) => (
               <View style={styles.cartView}>

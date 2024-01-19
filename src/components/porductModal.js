@@ -41,7 +41,6 @@ const productModal = ({ isVisible, closeModal, product }) => {
         </View>
       </View>
 
-      {/* Buy Modal */}
       <Modal
         animationType="slide"
         transparent={true}
@@ -57,7 +56,6 @@ const productModal = ({ isVisible, closeModal, product }) => {
         </View>
       </Modal>
 
-      {/* Thank You Modal */}
       <Modal
         animationType="slide"
         transparent={true}

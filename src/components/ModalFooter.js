@@ -1,10 +1,7 @@
 import { 
   View, 
   Text, 
-  TouchableOpacity, 
-  StyleSheet,
-  Modal,
-Button } from 'react-native'
+  StyleSheet} from 'react-native'
 import React, {useState} from 'react'
 import TouchButton from './TouchButton'
 import ModalBuy from './ModalBuy'
@@ -12,7 +9,6 @@ import ModalThank from './ModalThank'
 
 const ModalFooter = ({getTotalAmount, onClose, }) => {
 
-  const isBuyModalVisible = ''
 
   const [state, setState] =useState({
     isBuyModalVisible : false,
